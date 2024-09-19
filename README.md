@@ -6,9 +6,13 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* ...My name is Nick, I'm excited to learn about coding
-* ...
-* ...
+
+* My name is Nick, I'm excited to learn about coding
+* This line is edited by daryan, tell your ski buddy to alert the others.
+* Wonjun Jung (kokoseij@gmail.com)
+  - haha nerd lmao
+
+
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
