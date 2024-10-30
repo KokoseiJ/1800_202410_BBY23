@@ -45,7 +45,7 @@ async function getAvatarUrlFromEmail(email) {
 
     const hash = await calculateEmailHash(email);
 
-    return GRAVATAR_BASEURL + hash + "?s=256";
+    return GRAVATAR_BASEURL + hash + "?s=256&d=retro";
 }
 
 function setProfilePic(email) {
