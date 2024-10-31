@@ -6,6 +6,7 @@ let nameInput = document.getElementById("hopinFormUserName")
 let programInput = document.getElementById("hopinFormProgram")
 let ageInput = document.getElementById("hopinFormAge")
 let profileForm = document.getElementById("hopinForm")
+let logoutButton = document.getElementById("hopinLogout")
 
 
 function submitCallback(e) {
@@ -63,7 +64,18 @@ function populateFormInfo(data) {
     ageInput.value = data.age;
 }
 
+function logout() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log("logging out user");
+        window.location = "/index.html"
+      }).catch((error) => {
+        // An error happened.
+      });
+}
+
 profileForm.addEventListener("submit", submitCallback);
+logoutButton.addEventListener("click", logout);
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
