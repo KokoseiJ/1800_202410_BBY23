@@ -1,11 +1,12 @@
 /*
+    TODO: Implement following elements.
+
     #hopinFormTitle - input element that receives group title
     #hopinFormDescription - input element that receives description
     #hopinForm - form element that encapsulates all of them
 
     button should be added manually, but it shouldn't need any handlers;
     just add a button like you normally do on forms and it will work
-
 */
 const title = document.getElementById("hopinFormTitle");
 const description = document.getElementById("hopinFormDescription");
@@ -32,7 +33,7 @@ function handleSubmit(e) {
             owner: user.uid,
             title: title.value,
             description: description.value,
-            created_at: (new Date()).toISOString(),
+            created_at: Timestamp.now();
             members: []
         }).then(()=>{
             console.log("group submitted");
