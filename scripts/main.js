@@ -17,6 +17,8 @@ function getNameFromAuth() {
     });
 }
 
+const Timestamp = firebase.firestore.Timestamp;
+
 
 function getGroups(before=null, limit=12) {
     /*
