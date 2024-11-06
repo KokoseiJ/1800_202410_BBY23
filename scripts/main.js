@@ -59,6 +59,10 @@ function getGroupElementFromGroupData(group) {
 
     let newGroup = groupTemplate.content.cloneNode(true);
 
+    // TODO: these are elements inside groupTemplate, with following classes
+    //       .group-title : p or span or h1 or whatever that grabs title
+    //       .group-description : same but with description
+    //       .group-owner : same but with owner's name
     newGroup.querySelector(".group-title").innerHTML = group.title;
     newGroup.querySelector(".group-description").innerHTML = group.description;
     
