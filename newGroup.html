@@ -45,80 +45,45 @@
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+   
+<body>
+  <!------------------------------>
+  <!-- Your HTML Layout go here -->
+  <!------------------------------>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
+  <!-- our own navbar goes here -->
+  <nav id="navbarPlaceholder"></nav>
 
-          </div>
-          <button type="button" class="btn btn-outline-danger">
-            <a class="btn btn-outline-danger" href="calendar.html">Calendar</a>
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-          </svg>
-          
-        </button>
-        </div>
-      </nav>
-
-    <div class="container-fluid bg-light text-dark p-5">
-        <div class="container bg-light p-5">
-            <h1 class="display-4">Welcome to HopIn, <span id="name-goes-here"></span></h1>
-            <hr>
-            <p>Find Carpool Here!</p>
-        </div>
-</div>
-
-<div class="container"> 
-  <h1>Carpool Options</h1>
-  <!-- Here is the container for cards  -->
+  <!-- the body of your page goes here -->
+  <!-- stuff -->
+ 
   <div class="container">
-      <div id="groups-go-here" class="row row-cols-auto">
-          <!-- Templates for general use, not displayed -->
-<template id="groupTemplate">
-  <div class="card py-2 mx-2" style="width: 18rem">
-      <img class="card-image card-img-top" src=" ..." alt="..." />
-      <div class="card-body">
-          <h5 class="group-title">Card title</h5>
-          <p class=".group-owner">placeholder</p>
-          <br />
-          <p class="group-description">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-          </p>
-          <a id="seeMoreButtomTemplate" class="btn btn-primary card-href">Read more ...</a>
-      </div>
-  </div>
-</template>
-<template id="seeMoreButtomTemplate">
-  <a>See more...</a>
-</template>
-      </div>
-  </div>
-</div>
-<div class="container"> 
-  <div class="position-relative"> 
-      <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="window.location.href='NewGroup.html'">Create Group</button>
-  </div>
+    <h1>Create a New Group</h1>
+    <form id="hopinForm">
+        <div class="form-group">
+            <label for="hopinFormTitle">Group Name</label>
+            <input type="text" class="form-control" id="hopinFormTitle" placeholder="Title">
+        </div>
+        <br> 
+        <label for="exampleFormControlSelect1">How many passengers</label>
+        <select class="form-control" id="level">
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+        <br> 
+        <div class="form-group">
+            <label for="hopinFormDescription">Description</label>
+            <textarea class="form-control" id="hopinFormDescription" rows="3"></textarea>
+        </div>
+        <br> 
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-lg btn-primary">Create</button>
+        </div>
+    </form>
 </div>
 
+ 
     <!-- our own footer goes here-->
      <footer>
     <ul class="nav nav-pills nav-fill">
@@ -155,6 +120,7 @@
     <script src="./scripts/script.js"></script>
     <script src="./scripts/main.js"></script>
     <script src="./scripts/newGroup.js"></script>
+    
 </body>
 
 </html>
