@@ -33,7 +33,7 @@ function getGroups(before=null, limit=12) {
     Returns:
         Promise of document iterables.
     */
-    let query = db.collection("groups").orderby("created_at");
+    let query = db.collection("groups").orderBy("created_at");
 
     if (before !== null) {
         query = query.where("created_at", "<", before);
@@ -74,7 +74,7 @@ function getGroupElementFromGroupData(group) {
             newGroup.querySelector(".group-owner").innerHTML = doc.data().name;
         }
         // This promise now returns newGroup when .then is called
-        return newGroup;
+        return newGroup.firstElementChild;
     })
 
     // returns promise
