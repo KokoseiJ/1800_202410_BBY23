@@ -1,12 +1,12 @@
 function getNameFromAuth() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
         // Check if a user is signed in:
         if (user) {
             // Do something for the currently logged-in user here: 
             console.log(user.uid); //print the uid in the browser console
 
             // Look up name from firestore user document
-            db.collection("users").doc(user.uid).onSnapshot(doc=>{
+            db.collection("users").doc(user.uid).onSnapshot((doc)=>{
                 let data = doc.data();
                 document.getElementById("name-goes-here").innerText = data.name; 
             })
@@ -33,11 +33,12 @@ function getGroups(before=null, limit=12) {
     */
     let query = db.collection("groups").orderby("created_at");
 
-    if (before !== null)
+    if (before !== null) {
         query = query.where("created_at", "<", before);
+    }
 
     // returns promise
-    return query.limit(limit).get()
+    return query.limit(limit).get();
 }
 
 
@@ -62,7 +63,7 @@ function getGroupElementFromGroupData(group) {
     newGroup.querySelector(".group-description").innerHTML = group.description;
     
     // Queries DB to grab owner's name
-    let result = db.collection("users").doc(group.owner).get().then(doc => {
+    let result = db.collection("users").doc(group.owner).get().then((doc) => {
         if (doc.exists) {
             newGroup.querySelector(".group-owner").innerHTML = doc.data().name;
         }
@@ -93,12 +94,12 @@ function displayGroups(before=null, limit=12) {
     // `now` is a placeholder
     let lastCreatedAt = Timestamp.now();
 
-    getGroups(before, limit).then(groups=>{
-        groups.forEach(group=>{
+    getGroups(before, limit).then((groups)=>{
+        groups.forEach((group)=>{
             // Overwrite it to latest one
             lastCreatedAt = group.data().created_at;
 
-            getGroupElementFromGroupData(group.data()).then(newGroup=>{
+            getGroupElementFromGroupData(group.data()).then((newGroup)=>{
                 groupContainer.insertAdjacentElement("beforeend", newGroup);
             })
         })
@@ -106,7 +107,7 @@ function displayGroups(before=null, limit=12) {
 
     let newSeeMore = seeMoreButton.content.cloneNode(true);
 
-    newSeeMore.querySelector("a").addEventHandler("click", {
+    newSeeMore.querySelector("a").addEventHandler("click", ()=>{
         // Remove the button and then recursion moment
         newSeeMore.remove();
         displayGroups(lastCreatedAt, limit);
