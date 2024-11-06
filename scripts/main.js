@@ -101,25 +101,27 @@ function displayGroups(before=null, limit=12) {
     let lastCreatedAt = Timestamp.now();
 
     getGroups(before, limit).then((groups)=>{
+        let promises = [];
         groups.forEach((group)=>{
             // Overwrite it to latest one
             lastCreatedAt = group.data().created_at;
 
-            getGroupElementFromGroupData(group.data()).then((newGroup)=>{
-                groupContainer.insertAdjacentElement("beforeend", newGroup);
-            })
+            let promise = getGroupElementFromGroupData(group.data()).then((newGroup)=>{
+                return groupContainer.insertAdjacentElement("beforeend", newGroup);
+            });
+
+            promises.push(promise);
         })
+        return Promise.all(promises);
+    }).then(()=>{
+        let newSeeMore = seeMoreButton.content.querySelector("a").cloneNode(true);
+        newSeeMore.addEventListener("click", ()=>{
+            // Remove the button and then recursion moment
+            newSeeMore.remove();
+            displayGroups(lastCreatedAt, limit);
+        })
+        groupContainer.insertAdjacentElement("beforeend", newSeeMore);
     })
-
-    let newSeeMore = seeMoreButton.content.cloneNode(true);
-
-    newSeeMore.querySelector("a").addEventHandler("click", ()=>{
-        // Remove the button and then recursion moment
-        newSeeMore.remove();
-        displayGroups(lastCreatedAt, limit);
-    })
-
-    groupContainer.insertAdjacentElement("beforeend", newSeeMore);
 }
 
 getNameFromAuth(); //run the function
