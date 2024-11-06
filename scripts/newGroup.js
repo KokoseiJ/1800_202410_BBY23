@@ -23,15 +23,17 @@ function handleSubmit(e) {
             owner: owner UID
             title: group desc. title
             description: group desc.
+            created_at: ISO date string
             members: list of member UID
         }
     */
     if (user != null) {
         db.collection("groups").add({
-            owner: user.uid;
-            title: title.value;
-            description: description.value;
-            members: [];
+            owner: user.uid,
+            title: title.value,
+            description: description.value,
+            created_at: (new Date()).toISOString(),
+            members: []
         }).then(()=>{
             console.log("group submitted");
             window.location = "/main.html";
