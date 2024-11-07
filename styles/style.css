@@ -5,4 +5,9 @@ footer {
     width: 100%; 
     color: white;
     text-align: center;
+    margin-top: auto;
+    background-color: white;
+  }
+  .btn-btn-light{
+    background-color: blue;
   }
