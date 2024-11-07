@@ -97,26 +97,39 @@
         </button>
       </div>
     </nav>
-    
+
     <div class="container-lg">
       <div class="d-flex justify-content-between">
-        <h1 class="mt-4 mb-2">Profile</h1>
+        <h1 class="mt-4 mb-2">Edit Profile</h1>
         <button id="hopinLogout" class="btn btn-danger my-auto" style="height: min-content !important">Logout</button>
       </div>
       <img id="hopinFormPfp" class="hopin-profile-pfp img-thumbnail my-2 rounded-circle mx-auto d-block" style="width: 15rem"/>
       <h2 id="hopinFormNameLabel" class="hopin-profile-name text-center my-2"></h2>
-      <form id="hopinForm">   
+      <form id="hopinForm">
+        <div class="mb-3">
+          <label for="hopinFormUserName" class="form-label">Preferred Name</label>
+          <input type="text" class="form-control" id="hopinFormUserName"/>
+        </div>
+        <div class="mb-3">
+          <label for="hopinFormProgram" class="form-label">Program</label>
+          <input type="text" class="form-control" id="hopinFormProgram"/>
+        </div>
+        <div class="mb-3">
+          <label for="hopinFormUserAge" class="form-label">Age</label>
+          <input type="number" class="form-control" min="15" max="99" id="hopinFormAge"/>
+        </div> 
+        <button id="hopinFormSubmit" class="btn btn-primary" href="profile.html">Confirm Changes</button>
+        <button type="button" class="btn btn-outline-danger">
+          <a class="btn btn-outline-danger" href="profile.html">Submit</a>
+      </form>
     </div>
-    <div><button type="button" class="btn btn-outline-danger">
-      <a class="btn btn-outline-danger" href="editProfile.html">Edit Profile</a>
-    </div>
-      
- 
+    <br ><br ><br ><br ><br ><br > 
 
     <footer>
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="main.html"><svg
+          <a class="nav-link" aria-current="page" href="main.html"
+            ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
