@@ -20,7 +20,7 @@ function getNameFromAuth() {
 const Timestamp = firebase.firestore.Timestamp;
 
 
-function getGroups(before=null, limit=null) {
+async function getGroups(before=null, limit=null) {
     /*
     Retrieves group objects from DB using specified limits.
 
@@ -39,16 +39,15 @@ function getGroups(before=null, limit=null) {
         query = query.where("created_at", "<", before);
     }
 
-    if (limmit !== null) {
+    if (limit !== null) {
         query = query.limit(limit);
     }
 
-    // returns promise
-    return query.get();
+    return await query.get();
 }
 
 
-function getGroupElementFromGroupData(group) {
+async function createGroupElement(group) {
     /*
     Creates new Group card element from given data.
 
@@ -57,7 +56,7 @@ function getGroupElementFromGroupData(group) {
             object from groups collection, return value of .data()
 
     Returns:
-        Promise of newGroup object.
+        newGroup object.
     */
 
     // TOOD: #groupTemplate : template element containing group card thing
@@ -73,20 +72,16 @@ function getGroupElementFromGroupData(group) {
     newGroup.querySelector(".group-description").innerHTML = group.description;
     
     // Queries DB to grab owner's name
-    let result = db.collection("users").doc(group.owner).get().then((doc) => {
-        if (doc.exists) {
-            newGroup.querySelector(".group-owner").innerHTML = doc.data().name;
-        }
-        // This promise now returns newGroup when .then is called
-        return newGroup.firstElementChild;
-    })
+    let doc = await db.collection("users").doc(group.owner).get();
+    if (doc.exists) {
+        newGroup.querySelector(".group-owner").innerHTML = doc.data().name;
+    }
 
-    // returns promise
-    return result;
+    return newGroup.firstElementChild;
 }
 
 
-function displayGroups(before=null, limit=null) {
+async function displayGroups(before=null, limit=null) {
     /*
     Populates group container with data from db.
 
@@ -97,28 +92,13 @@ function displayGroups(before=null, limit=null) {
     // TODO: #groups-go-here: div container that will have group cards inside
     const groupContainer = document.getElementById("groups-go-here");
 
-    // Stores created_at value of earliest listing we have
-    // `now` is a placeholder
-    let lastCreatedAt = Timestamp.now();
-
-    getGroups(before, limit).then((groups)=>{
-        let promises = [];
-        groups.forEach((group)=>{
-            // Overwrite it to latest one
-            lastCreatedAt = group.data().created_at;
-
-            // Create new element and insert it to newGroup
-            // Created as promise and not awaited so
-            // we don't have to wait for each one to finish
-            let promise = getGroupElementFromGroupData(group.data()).then((newGroup)=>{
-                return groupContainer.insertAdjacentElement("beforeend", newGroup);
-            });
-
-            // Put all promises to a list
-            promises.push(promise);
-        })
-        // Wait until all elements are created
-        return Promise.all(promises);
+    // Get list of groups from firebase
+    let groups = await getGroups(before, limit);
+    
+    groups.forEach(async (group)=>{
+        // Create new element and insert it to newGroup
+        let newElement = await createGroupElement(group.data());
+        groupContainer.insertAdjacentElement("beforeend", newElement);
     });
 }
 
