@@ -20,7 +20,7 @@ function getNameFromAuth() {
 const Timestamp = firebase.firestore.Timestamp;
 
 
-function getGroups(before=null, limit=12) {
+function getGroups(before=null, limit=null) {
     /*
     Retrieves group objects from DB using specified limits.
 
@@ -29,7 +29,7 @@ function getGroups(before=null, limit=12) {
             only get groups that were created before specified time.
             if null (default), ignored.
         limit:
-            only get this specified amount of entries.
+            only get this specified amount of entries. ignored if null.
     Returns:
         Promise of document iterables.
     */
@@ -39,8 +39,12 @@ function getGroups(before=null, limit=12) {
         query = query.where("created_at", "<", before);
     }
 
+    if (limmit !== null) {
+        query = query.limit(limit);
+    }
+
     // returns promise
-    return query.limit(limit).get();
+    return query.get();
 }
 
 
@@ -82,7 +86,7 @@ function getGroupElementFromGroupData(group) {
 }
 
 
-function displayGroups(before=null, limit=12) {
+function displayGroups(before=null, limit=null) {
     /*
     Populates group container with data from db.
 
@@ -92,9 +96,6 @@ function displayGroups(before=null, limit=12) {
 
     // TODO: #groups-go-here: div container that will have group cards inside
     const groupContainer = document.getElementById("groups-go-here");
-    // TODO: #seeMoreButtonTemplate: "See More" button template that will
-    //                               Appear at the end of loaded groups
-    const seeMoreButton = document.getElementById("seeMoreButtomTemplate");
 
     // Stores created_at value of earliest listing we have
     // `now` is a placeholder
@@ -106,22 +107,19 @@ function displayGroups(before=null, limit=12) {
             // Overwrite it to latest one
             lastCreatedAt = group.data().created_at;
 
+            // Create new element and insert it to newGroup
+            // Created as promise and not awaited so
+            // we don't have to wait for each one to finish
             let promise = getGroupElementFromGroupData(group.data()).then((newGroup)=>{
                 return groupContainer.insertAdjacentElement("beforeend", newGroup);
             });
 
+            // Put all promises to a list
             promises.push(promise);
         })
+        // Wait until all elements are created
         return Promise.all(promises);
-    }).then(()=>{
-        let newSeeMore = seeMoreButton.content.querySelector("a").cloneNode(true);
-        newSeeMore.addEventListener("click", ()=>{
-            // Remove the button and then recursion moment
-            newSeeMore.remove();
-            displayGroups(lastCreatedAt, limit);
-        })
-        groupContainer.insertAdjacentElement("beforeend", newSeeMore);
-    })
+    });
 }
 
 getNameFromAuth(); //run the function
