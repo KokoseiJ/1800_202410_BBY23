@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
       modalFAQ.querySelector(".modal-body").innerHTML = `
         <p><strong>Owner:</strong> ${owner}</p>
         <p>${description}</p>
+        <button
+                id="request-btn"
+                class="btn btn-primary position-absolute bottom-0 end-0 m-3"
+                
+              >
+                Request to Join
+              </button>
       `;
     });
   });

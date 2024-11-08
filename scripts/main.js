@@ -104,3 +104,4 @@ async function displayGroups(before=null, limit=null) {
 
 getNameFromAuth(); //run the function
 displayGroups();
+
