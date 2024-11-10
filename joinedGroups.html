@@ -41,7 +41,8 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -59,19 +60,132 @@
           <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li>
+          <li>
+            <div>
+              <button type="button" class="btn btn-outline-danger">
+                <a class="btn btn-outline-danger" href="calendar.html">Calendar</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                  class="bi bi-calendar" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                </svg>
+              </button>
+            </div>
+          </li>
         </ul>
-
       </div>
-      <button type="button" class="btn btn-outline-danger">
-        <a class="btn btn-outline-danger" href="calendar.html">Calendar</a>
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-      </svg>
-      
-    </button>
+      <!-- Notification Button to trigger the modal -->
+<button type="button" class="btn btn-primary" id="notificationBtn" data-bs-toggle="modal" data-bs-target="#notificationModal">
+  Notification
+</button>
+
+<!-- Notification Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notificationModalLabel">Join Requests</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul id="requestsList" class="list-group">
+          <!-- Join requests will be populated here -->
+        </ul>
+      </div>
     </div>
+  </div>
+</div>
+
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Hello, world! This is a toast message.
+          </div>
+        </div>
+      </div>
+      <!--This is for notifications
+      -------------------------------
+      Anything related to notifications will go here 
+      -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+          Notification.
+          <div class="mt-2 pt-2 border-top">
+            <button type="button" class="btn btn-primary btn-sm">Take action</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+          </div>
+        </div>
+      </div>
   </nav>
-    <h1>UNDER DEVELOPMENT !</h1>
+  
+  <div class="container-fluid bg-light text-dark p-5">
+    <div class="container bg-light p-5">
+      <h1 class="display-4">Welcome to HopIn, <span id="name-goes-here"></span></h1>
+      <hr>
+      <p>These are your Carpools!</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Your Carpool Groups:</h1> 
+    <!-- Here is the container for cards  -->
+    <div class="container">
+      <div id="groups-go-here" class="row row-cols-auto">
+        <!-- Templates for general use, not displayed -->
+        <template id="groupTemplate">
+          <div class="card py-2 mx-2" style="width: 18rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+              <h5 class="group-title">Card title</h5>
+              <p class="group-owner">placeholder</p>
+              <br />
+              <p class="group-description">
+                Some quick example text to build on the card title and make up the
+                bulk of the card's content.
+              </p>
+              <button
+                class="btn btn-primary position-absolute bottom-0 end-0 m-3"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-FAQ"
+              >
+                Read More...
+              </button>
+            </div>
+          </div>
+        </template>
+        
+        <!-- Modal structure -->
+        <div class="modal fade" id="modal-FAQ" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body"></div>
+              <div class="modal-footer">Footer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="position-relative">
+      <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
+        onclick="window.location.href='newGroup.html'">Create Group</button>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br>
+    
+    
     <footer>
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
@@ -97,4 +211,13 @@
         </li>
       </ul>
     </footer>
+    
+    
+  <script src="./scripts/firebaseAPI_BBY23.js"></script>
+  <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/joinedGroups.js"></script>
+  <script src="./scripts/notification.js"></script>
+  
+
 </body>
