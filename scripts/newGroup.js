@@ -25,7 +25,7 @@ function handleSubmit(e) {
             title: title.value,
             description: description.value,
             created_at: firebase.firestore.Timestamp.now(),
-            members: []
+            members: [user.uid]
         }).then(() => {
             console.log("Group created successfully.");
             window.location.href = "main.html"; // Redirect after creation

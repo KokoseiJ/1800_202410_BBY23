@@ -41,3 +41,34 @@ function fetchJoinRequests() {
       requestsList.innerHTML = "<li class='list-group-item'>Error loading requests. Please try again.</li>";
     });
 }
+
+async function acceptRequest(reqId) {
+  const currentReqDoc = db.collection("joinRequests").doc(reqId);
+  const reqData = await currentReqDoc.get().then((doc)=>doc.data());
+
+  const currentGroupDoc = db.collection("groups").doc(reqData.groupId);
+  const groupData = await currentGroupDoc.get().then((doc)=>doc.data());
+
+  // man firestore sucks
+  const members = groupData.members;
+  if (!members) {
+    members = [];
+  }
+
+  members.push(reqData.userId);
+
+  await currentGroupDoc.update({
+    members: members
+  });
+
+  await currentReqDoc.delete();
+
+  // TODO: close modal or refresh or something
+  return;
+}
+
+
+async function declineRequest(reqId) {
+  await db.collection("joinRequests").doc(reqId).delete();
+  return;
+}
