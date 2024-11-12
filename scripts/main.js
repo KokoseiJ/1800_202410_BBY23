@@ -53,13 +53,17 @@ async function createGroupElement(group) {
 
     Args:
         group:
-            object from groups collection, return value of .data()
+            object from groups collection
 
     Returns:
         newGroup object.
     */
 
     // TOOD: #groupTemplate : template element containing group card thing
+
+    const groupId = group.id;
+    group = group.data();
+
     const groupTemplate = document.getElementById("groupTemplate");
 
     let newGroup = groupTemplate.content.cloneNode(true);
@@ -68,6 +72,8 @@ async function createGroupElement(group) {
     //       .group-title : p or span or h1 or whatever that grabs title
     //       .group-description : same but with description
     //       .group-owner : same but with owner's name
+    newGroup.querySelector(".group-id").value = groupId;
+    newGroup.querySelector(".group-owner-id").value = group.owner;
     newGroup.querySelector(".group-title").innerHTML = group.title;
     newGroup.querySelector(".group-description").innerHTML = group.description;
     
@@ -97,7 +103,7 @@ async function displayGroups(before=null, limit=null) {
     
     groups.forEach(async (group)=>{
         // Create new element and insert it to newGroup
-        let newElement = await createGroupElement(group.data());
+        let newElement = await createGroupElement(group);
         groupContainer.insertAdjacentElement("beforeend", newElement);
     });
 }

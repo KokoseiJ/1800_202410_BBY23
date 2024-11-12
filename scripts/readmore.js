@@ -1,6 +1,3 @@
-// Ensure currentUserId and currentGroupId are accessible
-const currentUserId = "currentUserId"; // Replace this with logic to get the logged-in user ID
-
 document.addEventListener("DOMContentLoaded", function () {
     const modalFAQ = document.getElementById("modal-FAQ");
 
@@ -10,9 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const title = cardBody.querySelector(".group-title").textContent;
       const owner = cardBody.querySelector(".group-owner").textContent;
       const description = cardBody.querySelector(".group-description").textContent;
-      
-      // Assume the currentGroupId is set based on the selected group
-      const currentGroupId = "your-group-id"; // Update with logic to set the group ID
+
+      // TODO: Delegate these to when each card is being created so
+      //       things are more elegant, this looks bad
+      const currentUserId = firebase.auth().currentUser.uid;
+      const currentGroupId = cardBody.querySelector(".group-id").value;
+      const groupOwnerId = cardBody.querySelector(".group-owner-id").value;
+
+      console.log({user: currentUserId, group: currentGroupId, owner: groupOwnerId});
 
       modalFAQ.querySelector(".modal-title").textContent = title;
       modalFAQ.querySelector(".modal-body").innerHTML = `
@@ -31,12 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // Event listener to handle request
         requestButton.addEventListener("click", function () {
           // Firestore request to join logic here
-          joinGroup(currentUserId, currentGroupId, requestButton);
+          joinGroup(currentUserId, currentGroupId, groupOwnerId, requestButton);
         });
       }
     });
 });
-function joinGroup(userId, groupId, button) {
+function joinGroup(userId, groupId, ownerId, button) {
   // Reference Firestore
   const db = firebase.firestore();
 
@@ -44,6 +46,7 @@ function joinGroup(userId, groupId, button) {
   db.collection("joinRequests").add({
     userId: userId,
     groupId: groupId,
+    ownerId: ownerId,
     status: "pending",
     requestedAt: firebase.firestore.FieldValue.serverTimestamp()
   })
