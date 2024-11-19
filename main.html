@@ -88,22 +88,40 @@
         <span class="dot d-none"></span>
       </div>
 
-<!-- Notification Modal -->
-<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="notificationModalLabel">Join Requests</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <!-- Notification Modal -->
+      <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="notificationModalLabel">Join Requests</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul id="requestsList" class="list-group">
+                <!-- Join requests will be populated here -->
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <ul id="requestsList" class="list-group">
-          <!-- Join requests will be populated here -->
-        </ul>
+
+      <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" style="padding-top: 128px;">
+          <div class="modal-content position-relative">
+            <img class="img-thumbnail img-fluid rounded-circle position-absolute" style="top: -128px; left: 50%; transform: translateX(-50%);" src="https://gravatar.com/avatar/379937b3aabda65bb8c4e51a6a186caa70beabb63e6419c9d9444bbcc388c95d?s=256&d=retro">
+            <div class="container-lg text-center position-relative" style="padding-top: 128px">
+              <h2 class="text-center fw-bold my-2">Wonjun Jung</h2>
+              <p class="my-2">
+                <span class="fw-bold">Program: </span><span class="user-program">CST Set B</span>
+              </p>
+              <p class="my-2 mb-4">
+                <span class="fw-bold">Age: </span><span class="user-age">69</span>
+              </p>
+              <button type="button" class="btn-close position-absolute" style="top: 10px; right: 10px;" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
       <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
