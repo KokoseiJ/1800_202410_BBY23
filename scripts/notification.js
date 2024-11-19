@@ -10,6 +10,7 @@ async function populateUserModal(userId) {
   const name = modal.querySelector("h2");
   const program = modal.querySelector(".user-program");
   const age = modal.querySelector(".user-age");
+  console.log(age);
 
   const userDataQuery = await db.collection("users").doc(userId).get();
   const userData = await userDataQuery.data();
@@ -17,7 +18,7 @@ async function populateUserModal(userId) {
   thumbnail.src = await getAvatarUrlFromEmail(userData.email);
   name.textContent = userData.name;
   program.textContent = userData.program;
-  age.textContext = userData.age;
+  age.textContent = userData.age;
 
   return;
 }
