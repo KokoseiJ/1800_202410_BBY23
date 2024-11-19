@@ -1,3 +1,36 @@
+const userModal = new bootstrap.Modal("#userModal");
+const notifModal = new bootstrap.Modal("#notificationModal");
+
+
+async function populateUserModal(userId) {
+  const { getAvatarUrlFromEmail } = await import ("./gravatar.js");
+
+  const modal = document.getElementById("userModal");
+  const thumbnail = modal.querySelector("img");
+  const name = modal.querySelector("h2");
+  const program = modal.querySelector(".user-program");
+  const age = modal.querySelector(".user-age");
+
+  const userDataQuery = await db.collection("users").doc(userId).get();
+  const userData = await userDataQuery.data();
+
+  thumbnail.src = await getAvatarUrlFromEmail(userData.email);
+  name.textContent = userData.name;
+  program.textContent = userData.program;
+  age.textContext = userData.age;
+
+  return;
+}
+
+
+async function showUserModal(userId) {
+  await populateUserModal(userId);
+
+  notifModal.hide();
+  userModal.show();
+}
+
+
 async function handleRequestUpdate(querySnapshot) {
   const dot = document.querySelector("div.notif-container").querySelector("span.dot");
   const requestsList = document.getElementById("requestsList");
@@ -25,10 +58,13 @@ async function handleRequestUpdate(querySnapshot) {
     const listItem = document.createElement("li");
     listItem.className = "list-group-item d-flex justify-content-between align-items-center";
     listItem.innerHTML = `
-      <span><strong>User:</strong> ${userData.name} - <strong>Group:</strong> ${groupData.title}</span>
+      <span><strong>User: </strong><a class="usertrigger">${userData.name}</a> - <strong>Group: </strong> ${groupData.title}</span>
       <button class="btn btn-success btn-sm" onclick="acceptRequest('${doc.id}')">Accept</button>
       <button class="btn btn-danger btn-sm" onclick="declineRequest('${doc.id}')">Decline</button>
     `;
+    listItem.querySelector("a.usertrigger").addEventListener("click", ()=>{
+      showUserModal(requestData.userId);
+    })
     requestsList.appendChild(listItem);
   });
 }
@@ -84,3 +120,10 @@ firebase.auth().onAuthStateChanged((user)=>{
     .onSnapshot(handleRequestUpdate,
                 handleRequestError);
 });
+
+
+document.getElementById("userModal").addEventListener(
+  "hide.bs.modal", (e)=>{
+    notifModal.show();
+  }
+)
