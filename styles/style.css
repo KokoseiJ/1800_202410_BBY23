@@ -11,3 +11,19 @@ footer {
   .btn-btn-light{
     background-color: blue;
   }
+
+div.notif-container {
+  position: relative !important;
+}
+
+span.dot {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+
+  position: absolute;
+  right: -5px;
+  top: -5px;
+}
