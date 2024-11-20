@@ -1,38 +1,22 @@
- function getNameFromAuth() {
+function getNameFromAuth() {
     firebase.auth().onAuthStateChanged((user) => {
-        // Check if a user is signed in:
         if (user) {
-            // Do something for the currently logged-in user here: 
-            console.log(user.uid); //print the uid in the browser console
-            // Look up name from firestore user document
-            db.collection("users").doc(user.uid).onSnapshot((doc)=>{
-                let data = doc.data();
-                document.getElementById("name-goes-here").innerText = data.name; 
-            })
+            console.log(user.uid); // Log the UID
+            db.collection("users")
+                .doc(user.uid)
+                .onSnapshot((doc) => {
+                    let data = doc.data();
+                    document.getElementById("name-goes-here").innerText = data.name;
+                });
         } else {
-            // No user is signed in.
-            console.log ("No user is logged in");
+            console.log("No user is logged in");
         }
     });
 }
 
 const Timestamp = firebase.firestore.Timestamp;
 
-
-
-async function getGroups(before=null, limit=null) {
-    /*
-    Retrieves group objects from DB using specified limits.
-
-    Args:
-        before:
-            only get groups that were created before specified time.
-            if null (default), ignored.
-        limit:
-            only get this specified amount of entries. ignored if null.
-    Returns:
-        Promise of document iterables.
-    */
+async function getGroups(before = null, limit = null) {
     let query = db.collection("groups").orderBy("created_at");
 
     if (before !== null) {
@@ -46,85 +30,123 @@ async function getGroups(before=null, limit=null) {
     return await query.get();
 }
 
-
-async function createGroupElement(group) {
-    /*
-    Creates new Group card element from given data.
-
-    Args:
-        group:
-            object from groups collection, return value of .data()
-
-    Returns:
-        newGroup object.
-    */
-
-    // TOOD: #groupTemplate : template element containing group card thing
+async function createGroupElement(group, groupID) {
     const groupTemplate = document.getElementById("groupTemplate");
-
     let newGroup = groupTemplate.content.cloneNode(true);
 
-    // TODO: these are elements inside groupTemplate, with following classes
-    //       .group-title : p or span or h1 or whatever that grabs title
-    //       .group-description : same but with description
-    //       .group-owner : same but with owner's name
     newGroup.querySelector(".group-title").innerHTML = group.title;
     newGroup.querySelector(".group-description").innerHTML = group.description;
-    
-    // Queries DB to grab owner's name
-    let doc = await db.collection("users").doc(group.owner).get();
-    if (doc.exists) {
-        newGroup.querySelector(".group-owner").innerHTML = doc.data().name;
+
+    // Fetch owner's name
+    try {
+        let ownerDoc = await db.collection("users").doc(group.owner).get();
+        if (ownerDoc.exists) {
+            let ownerName = ownerDoc.data().name;
+            newGroup.querySelector(".group-owner").innerHTML = ownerName;
+            group.ownerName = ownerName; // Save owner name for modal
+        } else {
+            newGroup.querySelector(".group-owner").innerHTML = "Unknown Owner";
+        }
+    } catch (error) {
+        console.error("Error fetching owner:", error);
+        newGroup.querySelector(".group-owner").innerHTML = "Error Loading Owner";
     }
+
+    // Set group-specific data attributes
+    newGroup.querySelector(".group-id").value = groupID;
+    newGroup.querySelector(".group-owner-id").value = group.owner;
+
+    // Attach event listener for the "Read More" button
+    let readMoreBtn = newGroup.querySelector("[data-bs-target='#modal-FAQ']");
+    readMoreBtn.addEventListener("click", () => openGroupModal(group, groupID));
 
     return newGroup.firstElementChild;
 }
 
+function openGroupModal(group, groupID) {
+    const modalFAQ = document.getElementById("modal-FAQ");
 
-function displayJoinedGroups(before=null, limit=null) {
-    /*
-     Populates group container with data from db.
- 
-     Args:
-         Same as getGroups.
-     */
-     
-         // Checks for UID upon Auth State Changing
-         // Needed to get the user ID into a variable
-         // Otherwise user.uid returns null
-     firebase.auth().onAuthStateChanged(async (user) => {
-         // TODO: #groups-go-here: div container that will have group cards inside
-         
-         
-         const userID = user.uid;
-         const groupContainer = document.getElementById("groups-go-here");
+    modalFAQ.querySelector(".modal-title").textContent = group.title;
+    modalFAQ.querySelector(".modal-body").innerHTML = `
+        <p><strong>Owner:</strong> ${group.ownerName || "Unknown Owner"}</p>
+        <p>${group.description}</p>
+    `;
 
-        //In case of running into problems later, uncomment the 
-        //Code line below and see if it works. If not, Hit up
-        //Giorgio he might know what's up
+    const modalFooter = modalFAQ.querySelector(".modal-footer");
+    modalFooter.innerHTML = "";
 
-        //groupContainer.innerHTML = "";
- 
-         // Get list of groups from firebase
-         let groups = await getGroups(before, limit);
-     
-         groups.forEach(async (group)=>{
-            
-            //Checks if the UID matches either the Owner's UID
-            //Or if the UID is associated with a group member
-            //And creates a group card if true
-             
-            if (userID == group.data().owner || userID == group.data().members){
-                 // Create new element and insert it to newGroup
-                 let newElement = await createGroupElement(group.data());
-                 groupContainer.insertAdjacentElement("beforeend", newElement);
-             }
-         });
-     })    
- }
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user.uid === group.owner) {
+            const editButton = document.createElement("button");
+            editButton.className = "btn btn-warning";
+            editButton.textContent = "Edit Group";
 
-getNameFromAuth(); //run the function
+            editButton.addEventListener("click", () => {
+                modalFAQ.querySelector(".modal-title").innerHTML = `
+                    <input type="text" class="form-control" id="editGroupName" value="${group.title}">
+                `;
+                modalFAQ.querySelector(".modal-body").innerHTML = `
+                    <textarea class="form-control" id="editGroupDescription" rows="3">${group.description}</textarea>
+                `;
+                modalFooter.innerHTML = `
+                    <button class="btn btn-success" id="saveChangesBtn">Save Changes</button>
+                `;
 
+                document.getElementById("saveChangesBtn").addEventListener("click", async () => {
+                    const updatedName = document.getElementById("editGroupName").value.trim();
+                    const updatedDescription = document.getElementById("editGroupDescription").value.trim();
 
+                    if (!updatedName || !updatedDescription) {
+                        alert("Both fields are required.");
+                        return;
+                    }
+
+                    try {
+                        await db.collection("groups").doc(groupID).update({
+                            title: updatedName,
+                            description: updatedDescription,
+                        });
+
+                        const toastElement = document.getElementById("saveSuccessToast");
+                        const toast = new bootstrap.Toast(toastElement);
+                        toast.show();
+
+                        modalFAQ.querySelector(".modal-title").textContent = updatedName;
+                        modalFAQ.querySelector(".modal-body").innerHTML = `
+                            <p><strong>Owner:</strong> ${group.ownerName || "Unknown Owner"}</p>
+                            <p>${updatedDescription}</p>
+                        `;
+                        modalFooter.innerHTML = "";
+                    } catch (error) {
+                        console.error("Error updating group:", error);
+                        alert("Failed to update group.");
+                    }
+                });
+            });
+
+            modalFooter.appendChild(editButton);
+        }
+    });
+}
+
+function displayJoinedGroups(before = null, limit = null) {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        const userID = user.uid;
+        const groupContainer = document.getElementById("groups-go-here");
+
+        let groups = await getGroups(before, limit);
+
+        groups.forEach(async (groupDoc) => {
+            const groupData = groupDoc.data();
+            const groupID = groupDoc.id;
+
+            if (userID === groupData.owner || groupData.members.includes(userID)) {
+                let newElement = await createGroupElement(groupData, groupID);
+                groupContainer.appendChild(newElement);
+            }
+        });
+    });
+}
+
+getNameFromAuth();
 displayJoinedGroups();
-
