@@ -25,7 +25,8 @@ function handleSubmit(e) {
             title: title.value,
             description: description.value,
             created_at: firebase.firestore.Timestamp.now(),
-            members: [user.uid]
+            members: [user.uid],
+            memberLimit: parseInt(document.getElementById("level").value)
         }).then(() => {
             console.log("Group created successfully.");
             window.location.href = "main.html"; // Redirect after creation
@@ -37,6 +38,7 @@ function handleSubmit(e) {
         alert("You must be logged in to create a group.");
     }
 }
+
 
 // Event listener for form submission
 groupForm.addEventListener("submit", handleSubmit);
@@ -67,3 +69,4 @@ function getGroupName(id) {
             console.error("Error retrieving document: ", error);
         });
 } 
+
