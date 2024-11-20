@@ -102,10 +102,12 @@ async function displayGroups(before=null, limit=null) {
     let groups = await getGroups(before, limit);
     
     groups.forEach(async (group)=>{
+
+        if (group.data().members.length < group.data().memberLimit){
         // Create new element and insert it to newGroup
         let newElement = await createGroupElement(group);
         groupContainer.insertAdjacentElement("beforeend", newElement);
-    });
+}});
 }
 
 getNameFromAuth(); //run the function
