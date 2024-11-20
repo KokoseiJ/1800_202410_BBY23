@@ -27,3 +27,28 @@ span.dot {
   right: -5px;
   top: -5px;
 }
+
+.group-description {
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis ;
+
+  
+}
+.group-title {
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis ; 
+  
+}
+
+.readmore {
+  background-color: blue;
+  color: white;
+  border-radius: 10%;
+  position: relative;
+  justify-content: right;
+}
+
