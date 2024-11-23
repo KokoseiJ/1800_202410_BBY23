@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const description = cardBody.querySelector(".group-description").textContent;
 
       // Extract hidden input values
-      const currentUserId = firebase.auth().currentUser.uid; // Current logged-in user
+      const currentUserId = firebase.auth().currentUser.uid; // Current logged-in 
       const currentGroupId = cardBody.querySelector(".group-id").value; // Group doc ID
       const groupOwnerId = cardBody.querySelector(".group-owner-id").value;
 
