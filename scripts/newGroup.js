@@ -11,6 +11,9 @@
 const title = document.getElementById("hopinFormTitle");
 const description = document.getElementById("hopinFormDescription");
 const groupForm = document.getElementById("hopinForm");
+const pickupTime = document.getElementById("hopinFormPickupTime");
+const pickupLocation = document.getElementById("hopinFormPickupLocation");
+const oneWay = document.getElementById("oneWay");
 
 
 function handleSubmit(e) {
@@ -23,6 +26,9 @@ function handleSubmit(e) {
         db.collection("groups").add({
             owner: user.uid,
             title: title.value,
+            pickup_time: pickupTime.value,
+            pickup_Location: pickupLocation.value,
+            oneWayTrip: oneWay.value,
             description: description.value,
             created_at: firebase.firestore.Timestamp.now(),
             members: [user.uid],
