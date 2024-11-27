@@ -1,15 +1,16 @@
 @font-face {
     font-family: 'race_sportregular';
     src: url('/assets/fonts/race-sport/Race\ Sport.ttf') format('woff2'),
-         url('/assets/fonts/race-sport/Race\ Sport.ttf') format('woff');
+        url('/assets/fonts/race-sport/Race\ Sport.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
+
 @font-face {
     font-family: 'made_tommy_outlineblack';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_black_outline_personal_use-webfont.woff') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_black_outline_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_black_outline_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -21,7 +22,7 @@
 @font-face {
     font-family: 'made_tommyblack';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_black_personal_use-webfont.woff') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_black_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_black_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -33,7 +34,7 @@
 @font-face {
     font-family: 'made_tommy_outlinebold';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_bold_outline_personal_use-webfont.woff') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_bold_outline_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_bold_outline_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -45,7 +46,7 @@
 @font-face {
     font-family: 'made_tommybold';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_bold_personal_use-webfont.woff') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_bold_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_bold_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -57,7 +58,7 @@
 @font-face {
     font-family: 'made_tommy_outlineextrabold';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_extrabold_outline_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_extrabold_outline_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_extrabold_outline_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -69,7 +70,7 @@
 @font-face {
     font-family: 'made_tommyextrabold';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_extrabold_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_extrabold_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_extrabold_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -81,7 +82,7 @@
 @font-face {
     font-family: 'made_tommy_outlinelight';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_light_outline_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_light_outline_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_light_outline_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -93,7 +94,7 @@
 @font-face {
     font-family: 'made_tommylight';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_light_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_light_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_light_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -105,7 +106,7 @@
 @font-face {
     font-family: 'made_tommy_outlinemedium';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_medium_outline_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_medium_outline_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_medium_outline_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -117,7 +118,7 @@
 @font-face {
     font-family: 'made_tommymedium';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_medium_personal_use-webfont.woff') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_medium_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_medium_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -129,7 +130,7 @@
 @font-face {
     font-family: 'made_tommy_outlineregular';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_regular_outline_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_regular_outline_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_regular_outline_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -141,110 +142,145 @@
 @font-face {
     font-family: 'made_tommyregular';
     src: url('/assets/fonts/webfontkit-20241122-151232/made_tommy_regular_personal_use-webfont.woff2') format('woff2'),
-         url('/assets/fonts/webfontkit-20241122-151232/made_tommy_regular_personal_use-webfont.woff') format('woff');
+        url('/assets/fonts/webfontkit-20241122-151232/made_tommy_regular_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 
 .Welcome {
-    background-color: #8a8989 ;
+    background-color: #8a8989;
     padding: 5%;
 }
 
 body {
     background-color: #3c3a3a;
-    font-family:  'made_tommymedium' ;
+    font-family: 'made_tommymedium';
 }
 
 p {
     font-family: 'made_tommylight';
 }
+
 .content {
     display: flex;
-    flex-wrap: wrap; /* Ensures content wraps onto new lines */
-    gap: 20px; /* Adds spacing between paragraphs */
-    justify-content: space-between; /* Spreads paragraphs across the width */
+    flex-wrap: wrap;
+    /* Ensures content wraps onto new lines */
+    gap: 20px;
+    /* Adds spacing between paragraphs */
+    justify-content: space-between;
+    /* Spreads paragraphs across the width */
     margin-left: 20%;
     color: white;
 }
 
-.content1, .content3 {
-    width: 45%; /* Set consistent width for left-aligned items */
-    text-align: left; /* Align text to the left */
+.content1,
+.content3 {
+    width: 45%;
+    /* Set consistent width for left-aligned items */
+    text-align: left;
+    /* Align text to the left */
     color: white;
     margin-left: 5%;
 }
 
 .content2 {
-    width: 45%; /* Set consistent width for right-aligned items */
-    text-align: left; /* Align text to the right */
+    width: 45%;
+    /* Set consistent width for right-aligned items */
+    text-align: left;
+    /* Align text to the right */
     color: white;
     margin-left: auto;
     margin-right: 5%;
 }
+
 .empty {
     background-color: black;
 }
+
 .login {
     align-items: center;
     text-align: center;
 }
-footer {
-    background: #4b4646; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f1f1f1;
-  } 
 
-.footericons {
-    font-size: 10vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-  }
-  
-  .footertext {
-    font-size: 3vh;
-    text-align: left;
-    justify-content: space-between;
-  }
-  
-  @media screen and (max-width: 700px) {
 
-    body {
-        font-size: 55%;
+@media screen and (max-width: 930px) {
+
+
+
+    #groups-go-here {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    img {
-
-        width: 100%;
-        height: 100%;
-
+    h1 {
+        text-align: center;
+        color: rgb(0, 0, 0);
+        background-color: white;
+        border-radius: 50px;
+        padding: 5px;
     }
 
+    .card {
+        text-align: left;
+    }
 
     footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
         text-align: center;
+        margin-top: auto;
+        background-color: white;
     }
 
-    .footertext {
+    .btn-btn-light {
+        background-color: blue;
+    }
 
-        font-size: 90%;
-        text-align: center;
-        justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
+    div.notif-container {
+        position: relative !important;
+    }
+
+    span.dot {
+        height: 15px;
+        width: 15px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+
+        position: absolute;
+        right: -5px;
+        top: -5px;
+    }
+
+    .group-description {
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
 
     }
 
-    #hopin {
-        font-weight: bold;
-        color: red;
-    }
- 
+    .group-title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
-  }
-  
+    }
+
+    .readmore {
+        background-color: blue;
+        color: white;
+        border-radius: 10%;
+        position: relative;
+        justify-content: right;
+    }
+
+
+
+}
