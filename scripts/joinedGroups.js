@@ -81,6 +81,28 @@ function openGroupModal(group, groupID) {
             editButton.className = "btn btn-warning";
             editButton.textContent = "Edit Group";
 
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "btn btn-danger";
+            deleteButton.textContent = "Delete Group";
+            
+            //TODO: NEED TO ADD WARNING BEFORE DELETING GROUP!!!!!!!!!!!!
+
+            // GETS GROUP ID, QUERIES THE DB FOR IT AND DELETED IT UPPON BUTTON PRESS. THEN IMMEDIATELY RELOADS TO RELOAD GROUPS AND CLOSE MODAL
+
+            function deleteGroup(groupID){
+                db.collection("groups").doc(groupID).delete().then(()=> {
+
+                
+                window.location.reload();
+            })
+            };
+
+            
+
+            deleteButton.addEventListener("click", () =>{
+                deleteGroup(groupID)
+         });
+
             editButton.addEventListener("click", () => {
                 modalFAQ.querySelector(".modal-title").innerHTML = `
                     <input type="text" class="form-control" id="editGroupName" value="${group.title}">
@@ -125,6 +147,7 @@ function openGroupModal(group, groupID) {
             });
 
             modalFooter.appendChild(editButton);
+            modalFooter.appendChild(deleteButton);
         }
     });
 }
