@@ -7,6 +7,7 @@ let profileForm = document.getElementById("hopinForm")
 let logoutButton = document.getElementById("hopinLogout")
 
 
+
 function submitCallback(e) {
     e.preventDefault();
 
