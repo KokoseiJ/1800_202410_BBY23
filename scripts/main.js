@@ -76,6 +76,10 @@ async function createGroupElement(group) {
     newGroup.querySelector(".group-owner-id").value = group.owner;
     newGroup.querySelector(".group-title").innerHTML = group.title;
     newGroup.querySelector(".group-description").innerHTML = group.description;
+    newGroup.querySelector(".pickup-time").innerHTML = "Pickup Time: " + group.pickup_time;
+    newGroup.querySelector(".pickup-location").innerHTML = "Location: " + group.pickup_Location;
+    newGroup.querySelector(".one-way").innerHTML = "One way Trip: " + group.oneWayTrip;
+
     
     // Queries DB to grab owner's name
     let doc = await db.collection("users").doc(group.owner).get();
