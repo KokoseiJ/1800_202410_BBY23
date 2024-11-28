@@ -59,7 +59,7 @@ async function handleRequestUpdate(querySnapshot) {
     const listItem = document.createElement("li");
     listItem.className = "list-group-item d-flex justify-content-between align-items-center";
     listItem.innerHTML = `
-      <span><strong>User: </strong><a class="usertrigger">${userData.name}</a> - <strong>Group: </strong> ${groupData.title}</span>
+      <span><strong>User: </strong><a class="usertrigger" style="cursor: pointer;">${userData.name}</a> - <strong>Group: </strong> ${groupData.title}</span>
       <button class="btn btn-success btn-sm" onclick="acceptRequest('${doc.id}')">Accept</button>
       <button class="btn btn-danger btn-sm" onclick="declineRequest('${doc.id}')">Decline</button>
     `;
