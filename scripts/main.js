@@ -77,8 +77,8 @@ async function createGroupElement(group) {
     newGroup.querySelector(".group-title").innerHTML = group.title;
     newGroup.querySelector(".group-description").innerHTML = group.description;
     newGroup.querySelector(".pickup-time").innerHTML = "Pickup Time: " + group.pickup_time;
-    newGroup.querySelector(".pickup-location").innerHTML = "Location: " + group.pickup_Location;
-    newGroup.querySelector(".one-way").innerHTML = "One way Trip: " + group.oneWayTrip;
+    newGroup.querySelector(".pickup-location").innerHTML = "Pickup Location: " + group.pickup_Location;
+    newGroup.querySelector(".one-way").innerHTML = "One Way Trip: " + group.oneWayTrip;
 
     
     // Queries DB to grab owner's name

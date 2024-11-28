@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const title = cardBody.querySelector(".group-title").textContent;
       const owner = cardBody.querySelector(".group-owner").textContent;
       const description = cardBody.querySelector(".group-description").textContent;
+      const pickupTime = cardBody.querySelector(".pickup-time").textContent;
+      const pickupLocation = cardBody.querySelector(".pickup-location").textContent;
+      const oneWay = cardBody.querySelector(".one-way").textContent;
+
 
       // Extract hidden input values
       const currentUserId = firebase.auth().currentUser.uid; // Current logged-in 
@@ -22,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const modalBody = modalFAQ.querySelector(".modal-body");
       modalBody.innerHTML = `
           <p><strong>Owner:</strong> ${owner}</p>
+          <p> ${pickupTime} </p>
+            <p> ${pickupLocation} </p>
+          <p> ${oneWay} </p>
           <p>${description}</p>
       `;
 
