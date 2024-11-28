@@ -66,6 +66,13 @@ async function createGroupElement(group, groupID) {
 function openGroupModal(group, groupID) {
     const modalFAQ = document.getElementById("modal-FAQ");
 
+    //Modal generates and diplays with fields:
+    // Owner name
+    // group pickup Time
+    // group pickup location
+    // if group is one way trip or Not
+    // group description
+
     modalFAQ.querySelector(".modal-title").textContent = group.title;
     modalFAQ.querySelector(".modal-body").innerHTML = `
         <p><strong>Owner:</strong> ${group.ownerName || "Unknown Owner"}</p>
