@@ -69,6 +69,9 @@ function openGroupModal(group, groupID) {
     modalFAQ.querySelector(".modal-title").textContent = group.title;
     modalFAQ.querySelector(".modal-body").innerHTML = `
         <p><strong>Owner:</strong> ${group.ownerName || "Unknown Owner"}</p>
+        <p> Pickup Time:  ${group.pickup_time} </p>
+            <p>Pickup Location:  ${group.pickup_Location} </p>
+          <p>One Way Trip:  ${group.oneWayTrip} </p>
         <p>${group.description}</p>
     `;
 
