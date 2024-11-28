@@ -1,11 +1,4 @@
-@font-face {
-    font-family: 'race_sportregular';
-    src: url('/assets/fonts/race-sport/Race\ Sport.ttf') format('woff2'),
-        url('/assets/fonts/race-sport/Race\ Sport.ttf') format('woff');
-    font-weight: normal;
-    font-style: normal;
 
-}
 
 @font-face {
     font-family: 'made_tommy_outlineblack';
