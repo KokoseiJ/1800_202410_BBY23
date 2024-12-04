@@ -10,7 +10,10 @@ async function populateUserModal(userId) {
   const name = modal.querySelector("h2");
   const program = modal.querySelector(".user-program");
   const age = modal.querySelector(".user-age");
+  const socialMedia = modal.querySelector(".user-socialMedia");
   console.log(age);
+
+
 
   const userDataQuery = await db.collection("users").doc(userId).get();
   const userData = await userDataQuery.data();
@@ -19,7 +22,7 @@ async function populateUserModal(userId) {
   name.textContent = userData.name;
   program.textContent = userData.program;
   age.textContent = userData.age;
-
+  socialMedia.textContent = userData.socialMedia;
   return;
 }
 
