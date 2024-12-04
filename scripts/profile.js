@@ -5,7 +5,7 @@ let programInput = document.getElementById("hopinFormProgram")
 let ageInput = document.getElementById("hopinFormAge")
 let profileForm = document.getElementById("hopinForm")
 let logoutButton = document.getElementById("hopinLogout")
-
+let socialMedia = document.getElementById("hopinFormSocialMedia")
 
 
 function submitCallback(e) {
@@ -15,7 +15,8 @@ function submitCallback(e) {
     db.collection("users").doc(user.uid).update({
         name: nameInput.value,
         age: ageInput.value,
-        program: programInput.value
+        program: programInput.value,
+        socialMedia: socialMedia.value
     });
 }
 
@@ -34,6 +35,7 @@ function populateFormInfo(data) {
     nameInput.value = data.name;
     programInput.value = data.program;
     ageInput.value = data.age;
+    socialMedia.value = data.socialMedia;
 }
 
 function logout() {
