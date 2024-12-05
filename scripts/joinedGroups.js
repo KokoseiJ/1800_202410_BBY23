@@ -181,5 +181,6 @@ function displayJoinedGroups(before = null, limit = null) {
     });
 }
 
+
 getNameFromAuth();
 displayJoinedGroups();
