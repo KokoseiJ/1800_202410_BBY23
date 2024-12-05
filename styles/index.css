@@ -169,20 +169,16 @@ p {
     color: white;
 }
 
-.content1, .content3 {
-    width: 45%; /* Set consistent width for left-aligned items */
-    text-align: left; /* Align text to the left */
+.content1 { 
+    text-align: center;  
     color: white;
-    margin-left: 5%;
-}
-
-.content2 {
-    width: 45%; /* Set consistent width for right-aligned items */
-    text-align: left; /* Align text to the right */
-    color: white;
+    margin-right: auto;
     margin-left: auto;
-    margin-right: 5%;
+    font-size: 25px;
+    padding-left: 20%;
+    padding-right: 20%;
 }
+ 
 .empty {
     background-color: black;
 }
@@ -217,13 +213,26 @@ footer {
     body {
         font-size: 55%;
     }
+    
+    button:hover {
+        transform: scale(1.2);
+      }
+      
+      .log {
+        background-color: yellow;
+        padding: 10px;
+        border-radius: 5%;
+      }
+   
 
-    img {
 
-        width: 100%;
-        height: 100%;
-
-    }
+    .content1 { 
+    text-align: center;  
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
+}
 
 
     footer {
@@ -242,7 +251,7 @@ footer {
 
     #hopin {
         font-weight: bold;
-        color: red;
+        color: red; 
     }
  
 

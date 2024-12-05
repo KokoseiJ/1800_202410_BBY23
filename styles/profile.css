@@ -140,8 +140,7 @@
 
 }
 
-.Welcome {
-    background-color: #8a8989;
+.Welcome {      
     padding: 5%;
 }
 img {
@@ -151,8 +150,7 @@ img {
     margin-bottom: 50px;
 }
 
-body {
-    background-color: #3c3a3a;
+body { 
     font-family: 'made_tommymedium';
 }
 h1 {

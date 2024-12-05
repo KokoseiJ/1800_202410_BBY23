@@ -30,7 +30,9 @@
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
+  
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/main.css">
   <!-- ------------------------------------------>
   <!-- Other libraries and styles of your own -->
   <!-- ---------------------------------------- -->
@@ -48,20 +50,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <div>
-          <button type="button" class="btn btn-outline-danger">
-            <a class="btn btn-outline-danger" href="calendar.html">Calendar</a>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar"
-              viewBox="0 0 16 16">
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-            </svg>
-          </button>
-        </div>
-        </li>
-        </ul>
+      <div class="collapse navbar-collapse" id="navbarNav">   
       </div>
       <!-- Notification Button to trigger the modal -->
       <button type="button" class="btn btn-primary" id="notificationBtn" data-bs-toggle="modal"
@@ -102,20 +91,29 @@
   </nav>
 
   <div class="container-fluid bg-light text-dark p-5">
+    <img src="images/hopin-high-resolution-logo-transparent.png" width="500px">
     <div class="container bg-light p-5">
       <h1 class="display-4">Welcome to HopIn, <span id="name-goes-here"></span></h1>
       <hr>
       <p>These are your Carpools!</p>
     </div>
   </div>
-
+  
+  <br /><br /><br />
+  <h1>Your Carpool Groups:</h1>
+  <br /><br /><br />
   <div class="container">
-    <h1>Your Carpool Groups:</h1>
+    <div class="position-relative">
+      <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
+        onclick="window.location.href='newGroup.html'">Create Group</button>
+    </div>
+  </div> 
     <!-- Here is the container for cards  -->
     <div class="container">
       <div id="groups-go-here" class="row row-cols-auto">
         <!-- Templates for general use, not displayed -->
         <!-- Templates for general use, not displayed -->
+         
         <template id="groupTemplate">
           <div class="card py-2 mx-2" style="width: 18rem">
             <img class="card-image card-img-top" src=" ..." alt="..." />
@@ -186,12 +184,7 @@
   </div>
 
 
-  <div class="container">
-    <div class="position-relative">
-      <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
-        onclick="window.location.href='newGroup.html'">Create Group</button>
-    </div>
-  </div>
+   
   <br><br><br><br><br><br><br>
 
 
@@ -203,14 +196,7 @@
             <path
               d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
           </svg></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="search.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path
-              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-          </svg></a>
-      </li>
+      </li> 
       <li class="nav-item">
         <a class="nav-link active" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
             fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
