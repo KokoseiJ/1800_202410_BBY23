@@ -43,52 +43,86 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">   
-      </div>
-      <!-- Notification Button to trigger the modal -->
-      <button type="button" class="btn btn-primary" id="notificationBtn" data-bs-toggle="modal"
-        data-bs-target="#notificationModal">
+  <nav class="navbar">  
+    <div class="navbar-collapse" id="navbarNav"> 
+    </div>
+    <!-- Notification Button to trigger the modal -->
+    <div class="notif-container">
+      <button type="button" class="btn btn-primary" id="notificationBtn" data-bs-toggle="modal" data-bs-target="#notificationModal">
         Notification
       </button>
+      <span class="dot d-none"></span>
+    </div>
+    
 
-      <!-- Notification Modal -->
-      <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="notificationModalLabel">Join Requests</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <ul id="requestsList" class="list-group">
-                <!-- Join requests will be populated here -->
-              </ul>
-            </div>
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="notificationModalLabel">Join Requests</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul id="requestsList" class="list-group">
+              <!-- Join requests will be populated here -->
+            </ul>
           </div>
         </div>
       </div>
-      <!--This is for notifications
-      -------------------------------
-      Anything related to notifications will go here 
-      -->
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    </div>
+
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md" style="padding-top: 128px;">
+        <div class="modal-content position-relative">
+          <img class="img-thumbnail img-fluid rounded-circle position-absolute" style="top: -128px; left: 50%; transform: translateX(-50%);" src="">
+          <div class="container-lg text-center position-relative" style="padding-top: 128px">
+            <h2 class="text-center fw-bold my-2"></h2>
+            <p class="my-2">
+              <span class="fw-bold">Program: </span><span class="user-program"></span>
+            </p>
+            <p class="my-2 mb-4">
+              <span class="fw-bold">Age: </span><span class="user-age"></span>
+            </p>
+            <p class="my-2 mb-4">
+              <span class="fw-bold">Location: </span><span class="user-city"></span>
+            </p>
+            <p class="my-2 mb-4">
+              <span class="fw-bold">Contact: </span><span class="user-socialMedia"></span>
+            </p>
+            <button type="button" class="btn-close position-absolute" style="top: 10px; right: 10px;" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
         <div class="toast-body">
-          Notification.
-          <div class="mt-2 pt-2 border-top">
-            <button type="button" class="btn btn-primary btn-sm">Take action</button>
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
-          </div>
+          Hello, world! This is a toast message.
         </div>
       </div>
-  </nav>
+    </div>
+    <!--This is for notifications
+    -------------------------------
+    Anything related to notifications will go here 
+    -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body">
+        Notification.
+        <div class="mt-2 pt-2 border-top">
+          <button type="button" class="btn btn-primary btn-sm">Take action</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+        </div>
+      </div>
+    </div>
+</nav>
 
   <div class="container-fluid bg-light text-dark p-5">
     <img src="images/hopin-high-resolution-logo-transparent.png" width="500px">

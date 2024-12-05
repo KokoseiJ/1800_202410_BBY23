@@ -139,14 +139,31 @@
 
  }
 
- 
+
 
  .Welcome {
      background-color: white;
      padding: 5%;
- } 
+ }
+
  .notif-container {
-    margin-right: 1%;
+     position: relative;
+     margin-right: 1%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     width: 100px; 
+     height: auto; 
+ }
+ .navbar {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    float: right;
+    padding-left: 100%;
+    padding-right: 1%;
  }
 
  .container-fluid {
@@ -192,33 +209,10 @@
  .content {
      display: flex;
      flex-wrap: wrap;
-     /* Ensures content wraps onto new lines */
      gap: 20px;
-     /* Adds spacing between paragraphs */
      justify-content: space-between;
-     /* Spreads paragraphs across the width */
      margin-left: 20%;
      color: white;
- }
-
- .content1,
- .content3 {
-     width: 45%;
-     /* Set consistent width for left-aligned items */
-     text-align: left;
-     /* Align text to the left */
-     color: white;
-     margin-left: 5%;
- }
-
- .content2 {
-     width: 45%;
-     /* Set consistent width for right-aligned items */
-     text-align: left;
-     /* Align text to the right */
-     color: white;
-     margin-left: auto;
-     margin-right: 5%;
  }
 
  .empty {
@@ -231,42 +225,13 @@
  }
 
 
- @media screen and (max-width: 930px) {
-
-
+ @media screen and (max-width: 700px) {
 
      #groups-go-here {
          display: flex;
          flex-wrap: wrap;
          gap: 1rem;
      }
-     .notif-container {
-        margin-right: 1%;
-     }
-    
-     .container-fluid {
-         display: flex;
-         /* Enables flexbox for alignment */
-         flex-direction: column;
-         /* Keeps the heading below the image */
-         align-items: center;
-         /* Centers content horizontally */
-         justify-content: center;
-         /* Centers content vertically */
-         text-align: center;
-         /* Centers the text in the heading */
-     }
-    
-     img {
-         max-width: 100%;
-         /* Ensures the image scales responsively */
-         height: auto;
-         /* Maintains aspect ratio */
-         margin-bottom: 50px;
-         /* Adds spacing below the image */
-     }
-     
-
 
      h1 {
          text-align: center;
@@ -305,7 +270,6 @@
          background-color: red;
          border-radius: 50%;
          display: inline-block;
-
          position: absolute;
          right: -5px;
          top: -5px;
@@ -335,6 +299,33 @@
          justify-content: right;
      }
 
-    
+     .notif-container {
+         position: relative;
+         margin-right: 1%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         width: 100px;
+         /* Example width */
+         height: auto;
+         /* Or specific height */
+     }
+
+     .container-fluid {
+         display: flex;
+         /* Enables flexbox for alignment */
+         flex-direction: column;
+         /* Keeps the heading below the image */
+         align-items: center;
+         /* Centers content horizontally */
+         justify-content: center;
+         /* Centers content vertically */
+         text-align: center;
+         /* Centers the text in the heading */
+     }
+
+
+
 
  }
