@@ -66,25 +66,20 @@ async function createGroupElement(group, groupID) {
 function openGroupModal(group, groupID) {
     const modalFAQ = document.getElementById("modal-FAQ");
 
-    //Modal generates and diplays with fields:
-    // Owner name
-    // group pickup Time
-    // group pickup location
-    // if group is one way trip or Not
-    // group description
-
+    // Populate modal with group details
     modalFAQ.querySelector(".modal-title").textContent = group.title;
     modalFAQ.querySelector(".modal-body").innerHTML = `
         <p><strong>Owner:</strong> ${group.ownerName || "Unknown Owner"}</p>
-        <p> Pickup Time:  ${group.pickup_time} </p>
-            <p>Pickup Location:  ${group.pickup_Location} </p>
-          <p>One Way Trip:  ${group.oneWayTrip} </p>
+        <p>Pickup Time: ${group.pickup_time || "Not provided"}</p>
+        <p>Pickup Location: ${group.pickup_Location || "Not provided"}</p>
+        <p>One Way Trip: ${group.oneWayTrip ? "Yes" : "No"}</p>
         <p>${group.description}</p>
     `;
 
     const modalFooter = modalFAQ.querySelector(".modal-footer");
     modalFooter.innerHTML = "";
 
+    // Add edit and delete options if the current user is the owner
     firebase.auth().onAuthStateChanged((user) => {
         if (user.uid === group.owner) {
             const editButton = document.createElement("button");
@@ -94,32 +89,41 @@ function openGroupModal(group, groupID) {
             const deleteButton = document.createElement("button");
             deleteButton.className = "btn btn-danger";
             deleteButton.textContent = "Delete Group";
-            
-            //TODO: NEED TO ADD WARNING BEFORE DELETING GROUP!!!!!!!!!!!!
 
-            // GETS GROUP ID, QUERIES THE DB FOR IT AND DELETED IT UPPON BUTTON PRESS. THEN IMMEDIATELY RELOADS TO RELOAD GROUPS AND CLOSE MODAL
-
-            function deleteGroup(groupID){
-                db.collection("groups").doc(groupID).delete().then(()=> {
-
-                
-                window.location.reload();
-            })
-            };
-
-            
-
-            deleteButton.addEventListener("click", () =>{
-                deleteGroup(groupID)
-         });
+            deleteButton.addEventListener("click", () => {
+                if (confirm("Are you sure you want to delete this group?")) {
+                    db.collection("groups").doc(groupID).delete().then(() => {
+                        window.location.reload();
+                    });
+                }
+            });
 
             editButton.addEventListener("click", () => {
                 modalFAQ.querySelector(".modal-title").innerHTML = `
                     <input type="text" class="form-control" id="editGroupName" value="${group.title}">
                 `;
                 modalFAQ.querySelector(".modal-body").innerHTML = `
-                    <textarea class="form-control" id="editGroupDescription" rows="3">${group.description}</textarea>
+                    <div class="mb-3">
+                        <label for="editGroupDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editGroupDescription" rows="3">${group.description}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPickupTime" class="form-label">Pickup Time</label>
+                        <input type="text" class="form-control" id="editPickupTime" value="${group.pickup_time || ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPickupLocation" class="form-label">Pickup Location</label>
+                        <input type="text" class="form-control" id="editPickupLocation" value="${group.pickup_Location || ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editOneWayTrip" class="form-label">One Way Trip</label>
+                        <select class="form-select" id="editOneWayTrip">
+                            <option value="Yes" ${group.oneWayTrip ? 'selected' : ''}>Yes</option>
+                            <option value="No" ${!group.oneWayTrip ? 'selected' : ''}>No</option>
+                        </select>
+                    </div>
                 `;
+
                 modalFooter.innerHTML = `
                     <button class="btn btn-success" id="saveChangesBtn">Save Changes</button>
                 `;
@@ -127,9 +131,12 @@ function openGroupModal(group, groupID) {
                 document.getElementById("saveChangesBtn").addEventListener("click", async () => {
                     const updatedName = document.getElementById("editGroupName").value.trim();
                     const updatedDescription = document.getElementById("editGroupDescription").value.trim();
+                    const updatedPickupTime = document.getElementById("editPickupTime").value.trim();
+                    const updatedPickupLocation = document.getElementById("editPickupLocation").value.trim();
+                    const updatedOneWayTrip = document.getElementById("editOneWayTrip").value === "Yes";
 
-                    if (!updatedName || !updatedDescription) {
-                        alert("Both fields are required.");
+                    if (!updatedName || !updatedDescription || !updatedPickupTime || !updatedPickupLocation) {
+                        alert("All fields are required.");
                         return;
                     }
 
@@ -137,6 +144,9 @@ function openGroupModal(group, groupID) {
                         await db.collection("groups").doc(groupID).update({
                             title: updatedName,
                             description: updatedDescription,
+                            pickup_time: updatedPickupTime,
+                            pickup_Location: updatedPickupLocation,
+                            oneWayTrip: updatedOneWayTrip,
                         });
 
                         const toastElement = document.getElementById("saveSuccessToast");
@@ -146,6 +156,9 @@ function openGroupModal(group, groupID) {
                         modalFAQ.querySelector(".modal-title").textContent = updatedName;
                         modalFAQ.querySelector(".modal-body").innerHTML = `
                             <p><strong>Owner:</strong> ${group.ownerName || "Unknown Owner"}</p>
+                            <p>Pickup Time: ${updatedPickupTime}</p>
+                            <p>Pickup Location: ${updatedPickupLocation}</p>
+                            <p>One Way Trip: ${updatedOneWayTrip ? "Yes" : "No"}</p>
                             <p>${updatedDescription}</p>
                         `;
                         modalFooter.innerHTML = "";
@@ -181,6 +194,6 @@ function displayJoinedGroups(before = null, limit = null) {
     });
 }
 
-
+// Initialize functions
 getNameFromAuth();
 displayJoinedGroups();
