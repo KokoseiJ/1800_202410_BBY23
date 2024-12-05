@@ -11,6 +11,7 @@ async function populateUserModal(userId) {
   const program = modal.querySelector(".user-program");
   const age = modal.querySelector(".user-age");
   const socialMedia = modal.querySelector(".user-socialMedia");
+  const city = modal.querySelector(".user-city")
   console.log(age);
 
 
@@ -23,6 +24,7 @@ async function populateUserModal(userId) {
   program.textContent = userData.program;
   age.textContent = userData.age;
   socialMedia.textContent = userData.socialMedia;
+  city.textContent = userData.city;
   return;
 }
 

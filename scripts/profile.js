@@ -6,7 +6,7 @@ let ageInput = document.getElementById("hopinFormAge")
 let profileForm = document.getElementById("hopinForm")
 let logoutButton = document.getElementById("hopinLogout")
 let socialMedia = document.getElementById("hopinFormSocialMedia")
-
+let city = document.getElementById("hopinFormCity")
 
 function submitCallback(e) {
     e.preventDefault();
@@ -16,7 +16,8 @@ function submitCallback(e) {
         name: nameInput.value,
         age: ageInput.value,
         program: programInput.value,
-        socialMedia: socialMedia.value
+        socialMedia: socialMedia.value,
+        city: city.value
     });
 }
 
@@ -36,6 +37,7 @@ function populateFormInfo(data) {
     programInput.value = data.program;
     ageInput.value = data.age;
     socialMedia.value = data.socialMedia;
+    city.value = data.city;
 }
 
 function logout() {
